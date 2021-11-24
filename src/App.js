@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import Footer from "./application/components/Footer";
 import Navigation from "./application/layouts/Navbar";
 import Storefront from "./application/pages/Storefront";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Collection from "./application/pages/Collection";
 import ProductOverview from "./application/pages/ProductOverview";
 import ErrorPage from "./application/pages/404";
@@ -34,8 +34,7 @@ const App = () => {
   return (
     <AuthContextProvider>
       <Router>
-        <Navigation />
-
+        <Navigation />s
         <Switch>
           <Route exact path='/' component={Storefront} />
           <Route exact path='/collection:category' component={Collection} />
