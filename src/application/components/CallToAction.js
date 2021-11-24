@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 export default function Float() {
   const getImageSrc = (width) => {
     // if (width >= 1080) return desktopImage;
@@ -34,13 +34,13 @@ export default function Float() {
           <Link
             to='/collection:all'
             style={{
-              border: '1px solid #332C2C',
-              color: '#EDD3A7',
-              background: '#0D0D0D',
+              border: "1px solid #332C2C",
+              color: "#EDD3A7",
+              background: "#0D0D0D",
             }}
-            className='inline-block bg-black border-transparent mt-8 flex justify-center py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
+            className=' bg-black border-transparent mt-8 flex justify-center py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
           >
-            Contact Representative{' '}
+            Contact Representative{" "}
           </Link>
         </motion.div>
       </div>

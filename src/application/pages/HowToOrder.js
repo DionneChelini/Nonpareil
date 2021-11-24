@@ -132,7 +132,7 @@ export default function Example() {
                     color: "#EDD3A7",
                     background: "#0D0D0D",
                   }}
-                  className='inline-block bg-black border-transparent mt-14 flex py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
+                  className='bg-black border-transparent mt-14 flex py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
                   whileHover={{
                     scale: 1.05,
                   }}
