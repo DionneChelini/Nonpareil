@@ -28,13 +28,14 @@ const App = () => {
   const productContext = useContext(ProductContext);
   const { loading } = productContext;
   useEffect(() => {
+    console.log("Fired");
     initialize();
   }, []);
 
   return (
     <AuthContextProvider>
       <Router>
-        <Navigation />s
+        <Navigation />
         <Switch>
           <Route exact path='/' component={Storefront} />
           <Route exact path='/collection:category' component={Collection} />
