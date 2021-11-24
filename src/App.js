@@ -28,7 +28,6 @@ const App = () => {
   const productContext = useContext(ProductContext);
   const { loading } = productContext;
   useEffect(() => {
-    console.log("Fired");
     initialize();
   }, []);
 
