@@ -40,7 +40,7 @@ export default function Example() {
               to='/collection:all'
               className='bg-black border-transparent flex py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
             >
-              VIEW COLLECTIONlklklk{" "}
+              VIEW COLLECTION{" "}
               <ArrowRightIcon className='h-6 w-6 pl-2' aria-hidden='true' />
             </Link>
           </motion.div>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useRef, Fragment, useState } from "react";
+import { useContext, useEffect, Fragment, useState } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, PlusSmIcon } from "@heroicons/react/solid";
@@ -27,14 +27,14 @@ export default function Example({ filters, breadcrumbs }) {
     getProduct,
   } = productContext;
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const productRef = useRef();
+
   //* This function handles the individual product being put into state
 
-  const handleOnClick = (e) => {
+  const handleOnClick = (e, id) => {
     e.preventDefault();
-    console.log(productRef.current.id);
+
     try {
-      return history.push(`/product_overview:${productRef.current.id}`);
+      return history.push(`/product_overview:${id}`);
     } catch (error) {
       console.log("something went wrong");
     }
@@ -294,8 +294,7 @@ export default function Example({ filters, breadcrumbs }) {
                     {products.map((product) => (
                       <div
                         id={product.id}
-                        ref={productRef}
-                        onClick={handleOnClick}
+                        onClick={(e) => handleOnClick(e, product.id)}
                         key={uuid()}
                         className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
                       >

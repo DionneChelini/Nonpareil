@@ -32,15 +32,15 @@ const useDashboard = ({
     setProductData({
       title: "",
       description: "",
-      product_id: "",
       category: "",
       subcategory: "",
       price: "",
       details: [
         { name: "material", item: [] },
+        { name: "product_id", item: [] },
         { name: "dimensions", item: [] },
+        { name: "delivery", item: [] },
       ],
-      delivery: "",
     });
   }, [submit]);
 
