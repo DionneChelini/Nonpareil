@@ -366,6 +366,7 @@ export default function Example({ navigation, userNavigation, types }) {
                                 value={productData.category}
                                 onClick={selectCategoryHandler}
                               >
+                                <option>Select Category</option>
                                 <option>Beds</option>
                                 <option>CaseGoods</option>
                                 <option>Lighting</option>

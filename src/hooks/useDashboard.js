@@ -37,9 +37,9 @@ const useDashboard = ({
       price: "",
       details: [
         { name: "material", item: [] },
-        { name: "product_id", item: [] },
         { name: "dimensions", item: [] },
         { name: "delivery", item: [] },
+        { name: "product_id", item: [] },
       ],
     });
   }, [submit]);
