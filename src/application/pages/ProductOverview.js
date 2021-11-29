@@ -136,9 +136,7 @@ export default function Example({ colors, details }) {
                     dangerouslySetInnerHTML={{ __html: product.description }}
                   />
                 </div>
-                <h3 className='text-sm text-gray-600 mt-3'>
-                  Product ID: {product.product_id}
-                </h3>
+
                 <form className='mt-6'>
                   <div className='mt-10 flex sm:flex-col1'>
                     <motion.div

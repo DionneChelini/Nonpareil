@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 import {
   MenuIcon,
@@ -71,7 +72,7 @@ const Example = ({ navigation, history }) => {
                   <Tab.List className='-mb-px flex px-4 space-x-8'>
                     {navigation.categories.map((category) => (
                       <Tab
-                        key={category.name}
+                        key={uuid()}
                         className={({ selected }) =>
                           classNames(
                             selected
@@ -88,13 +89,10 @@ const Example = ({ navigation, history }) => {
                 </div>
                 <Tab.Panels as={Fragment}>
                   {navigation.categories.map((category) => (
-                    <Tab.Panel
-                      key={category.name}
-                      className='px-4 py-6 space-y-12'
-                    >
+                    <Tab.Panel key={uuid()} className='px-4 py-6 space-y-12'>
                       <div className='grid grid-cols-2 gap-x-4 gap-y-10'>
                         {category.featured.map((item) => (
-                          <div key={item.name} className='group relative'>
+                          <div key={uuid()} className='group relative'>
                             <div className='aspect-w-1 aspect-h-1 rounded-md bg-gray-100 overflow-hidden group-hover:opacity-75'>
                               <img
                                 src={item.imageSrc}
@@ -128,7 +126,7 @@ const Example = ({ navigation, history }) => {
 
               <div className='border-t border-gray-200 py-6 px-4 space-y-6'>
                 {navigation.pages.map((page) => (
-                  <div key={page.name} className='flow-root'>
+                  <div key={uuid()} className='flow-root'>
                     <Link
                       to={page.href}
                       className={`-m-2 p-2 block font-medium text-gray-900 ${page.classes}`}
@@ -165,7 +163,7 @@ const Example = ({ navigation, history }) => {
                     <Popover.Group className='px-4 bottom-0 inset-x-0'>
                       <div className='h-full flex justify-center space-x-8'>
                         {navigation.categories.map((category) => (
-                          <Popover key={category.name} className='flex'>
+                          <Popover key={uuid()} className='flex'>
                             {({ open }) => (
                               <>
                                 <div className='relative flex'>
@@ -202,7 +200,7 @@ const Example = ({ navigation, history }) => {
                                         <div className='grid grid-cols-4 gap-y-10 gap-x-8 py-16'>
                                           {category.featured.map((item) => (
                                             <div
-                                              key={item.name}
+                                              key={uuid()}
                                               className='group relative'
                                             >
                                               <div className='aspect-w-1 aspect-h-1 rounded-md bg-gray-100 overflow-hidden group-hover:opacity-75'>
@@ -242,7 +240,7 @@ const Example = ({ navigation, history }) => {
 
                         {navigation.pages.map((page) => (
                           <Link
-                            key={page.name}
+                            key={uuid()}
                             to={page.href}
                             className={`${page.classes} flex items-center text-sm font-medium text-gray-700 hover:text-gray-800`}
                           >
@@ -326,35 +324,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Beds",
-            href: "#",
+            href: "/collection:beds",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1086_1.jpg?alt=media&token=48accc6d-48b9-41fb-b1fc-a7e66f136d05",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1086_1.jpg?alt=media&token=4bd984ef-897b-4697-b643-6299a33019ce",
             imageAlt:
-              "Models sitting back to back, wearing Basic Tee in black and bone.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Bed",
           },
           {
-            name: "Beds1",
-            href: "#",
+            name: "Beds",
+            href: "/collection:beds",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1088_1.jpg?alt=media&token=30b5fa2a-2951-4c3e-b558-aa08f72da404",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1088_1.jpg?alt=media&token=f975174c-0367-4e31-8c54-ffe3c4ab2d0b",
             imageAlt:
-              "Models sitting back to back, wearing Basic Tee in black and bone.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Bed",
           },
           {
-            name: "Beds2",
-            href: "#",
+            name: "Beds",
+            href: "/collection:beds",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1089_3.jpg?alt=media&token=102f1d83-d7ef-4bdf-aa7e-6d5cff4c3e22",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1089_2.jpg?alt=media&token=4f84a5d8-fb10-468a-a674-1b9501846454",
             imageAlt:
-              "Models sitting back to back, wearing Basic Tee in black and bone.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Bed",
           },
           {
-            name: "Beds3",
-            href: "#",
+            name: "Beds",
+            href: "/collection:beds",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1093_1.jpg?alt=media&token=04d7b2fc-c2b7-42ee-b9f6-6114c07a8d0c",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
             imageAlt:
-              "Models sitting back to back, wearing Basic Tee in black and bone.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Bed",
           },
         ],
       },
@@ -363,34 +361,51 @@ Example.defaultProps = {
         featured: [
           {
             name: "Nightstands & Bedside tables",
-            href: "#",
+            href: "/collection:caseGoods",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1118_3.jpg?alt=media&token=8dd857ef-2dfe-4ad6-8e8f-2f38724264cd",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1118_1.jpg?alt=media&token=75f087ec-94a3-4ed7-92b0-574e4a17e1f5",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Case Goods || Luxurious Designer Case Goods",
+          },
+          {
+            name: "Bookcase & Displays",
+            href: "/collection:caseGoods",
+            imageSrc:
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1127_2.jpg?alt=media&token=340bed16-8055-4037-8f1d-8024a5d7f8f2",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Case Goods || Luxurious Designer Case Goods",
           },
           {
             name: "Cabinets",
-            href: "#",
+            href: "/collection:caseGoods",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1168_1.jpg?alt=media&token=274f287a-d251-4c80-b8a9-b3c3e2cca391",
-            imageAlt: "Model wearing light heather gray t-shirt.",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1168_1.jpg?alt=media&token=0a436235-34ab-4de4-95b5-f799ba749cc2",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Cabinets || Luxurious Designer Cabinets",
           },
           {
             name: "Chests of Drawers",
-            href: "#",
+            href: "/collection:caseGoods",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1138_1.jpg?alt=media&token=7e134b2d-b7aa-4a2d-9650-12a499b57c88",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1141_2.jpg?alt=media&token=ea3e3f2d-64f9-4236-a194-f64031f02e06",
             imageAlt:
-              "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Chests of Drawers || Luxurious Designer Chests of Drawers",
           },
           {
             name: "Cocktail Cabinets",
-            href: "#",
+            href: "/collection:caseGoods",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1153_3.jpg?alt=media&token=d34d10a4-02ba-4be2-a8a6-e6b706782dde",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1120_1.jpg?alt=media&token=be19332e-f290-4b6c-a414-ddfbaf4e884e",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Cocktail Cabinets || Luxurious Designer Cocktail Cabinets",
+          },
+          {
+            name: "Credenzas & Sideboards",
+            href: "/collection:caseGoods",
+            imageSrc:
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1235_1.jpg?alt=media&token=11eb9c5a-18c9-4afb-8198-e2b4ced05470",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Cocktail Cabinets || Luxurious Designer Cocktail Cabinets",
           },
         ],
       },
@@ -399,34 +414,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Table Lamps",
-            href: "#",
+            href: "/collection:lighting",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1500_2.jpg?alt=media&token=bc1cf7d5-4153-4358-ac4e-b31b10106bfa",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1023_2.jpg?alt=media&token=0c003c95-ac15-4b42-a012-32c0ac2f64c0",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Table Lamps || Designer Lighting Decor",
           },
           {
             name: "Wall Lights",
-            href: "#",
+            href: "/collection:lighting",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1476_2.jpg?alt=media&token=e77d348e-faca-4b22-9012-ad87074532cf",
-            imageAlt: "Model wearing light heather gray t-shirt.",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1476_2.jpg?alt=media&token=2006ae3d-2765-4a7d-82b4-c10a839618f1",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Wall Lights || Designer Lighting Decor",
           },
           {
             name: "Chandeliers",
-            href: "#",
+            href: "/collection:lighting",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1524_1.jpg?alt=media&token=40d9ddc9-063f-425a-bca2-8940d96e6cbc",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1534_1.jpg?alt=media&token=b8fae76f-aa05-4c29-ad2f-b5d6fa9b09ef",
             imageAlt:
-              "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Chandeliers || Designer Lighting Decor",
           },
           {
             name: "Floor Lamps",
-            href: "#",
+            href: "/collection:lighting",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1561_2.jpg?alt=media&token=3779f52a-0960-47f4-bb7c-e2187a51c19e",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1568_3.jpg?alt=media&token=1547a646-bba8-493a-b77b-995c6eac6f9f",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Floor Lamps || Designer Lighting Decor",
           },
         ],
       },
@@ -435,35 +451,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Office Chairs",
-            href: "#",
+            href: "/collection:office",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1074_4.jpg?alt=media&token=b2b3fa20-22b2-4cdd-bc80-481ddb79cd14",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
           {
             name: "Office Bookcases",
-            href: "#",
+            href: "/collection:office",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1121_1.jpg?alt=media&token=637f4755-66c0-4caa-b433-b01229d5f6eb",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
           {
             name: "Collector Items",
-            href: "#",
+            href: "/collection:office",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1057_2.jpg?alt=media&token=15435423-3307-42cb-8c8c-c5add304d3f4",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
           {
             name: "Office Desks",
-            href: "#",
+            href: "/collection:office",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1048_1.jpg?alt=media&token=b1780aeb-94b3-4e56-863d-af3256b1cbb0",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
         ],
       },
@@ -472,34 +488,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Sofas",
-            href: "#",
+            href: "/collection:seating",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1660_4.jpg?alt=media&token=d44b109b-bc38-4011-9e7f-a7712dcfd9b6",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
           {
             name: "Benches & Ottomans",
-            href: "#",
+            href: "/collection:seating",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1591_3.jpg?alt=media&token=ef0b42e0-248a-4b8a-9425-601731c479a6",
-            imageAlt: "Model wearing light heather gray t-shirt.",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
           {
             name: "Armchairs",
-            href: "#",
+            href: "/collection:seating",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1743_3.jpg?alt=media&token=0da68ee1-235f-4798-aa09-7da6621d6672",
             imageAlt:
-              "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
           {
             name: "Chaise Longues",
-            href: "#",
+            href: "/collection:seating",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1602_2.jpg?alt=media&token=95a59ce4-01eb-4a76-942c-650977700c70",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
         ],
       },
@@ -508,34 +525,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Coffee & Cocktail Tables ",
-            href: "#",
+            href: "/collection:tables",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1337_2.jpg?alt=media&token=17e5812e-a639-49e7-9edb-762c862744b1",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
           {
             name: "Console Tables",
-            href: "#",
+            href: "/collection:tables",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1360_1.jpg?alt=media&token=f5dd0853-e678-459e-9a37-ecc4bcb0c20e",
-            imageAlt: "Model wearing light heather gray t-shirt.",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
           {
             name: "Hall Tables",
-            href: "#",
+            href: "/collection:tables",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1235_2.jpg?alt=media&token=fd11ba15-6d7d-4ae9-92b5-991db548503a",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
           {
             name: "Dinning Tables",
-            href: "#",
+            href: "/collection:tables",
             imageSrc:
               "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1414_1.jpg?alt=media&token=b6ea849c-fbfd-47d1-a96e-57c8013603b8",
             imageAlt:
-              "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
         ],
       },
@@ -544,11 +562,35 @@ Example.defaultProps = {
         featured: [
           {
             name: "Mirrors",
-            href: "#",
+            href: "/collection:mirrors",
             imageSrc:
-              "http://localhost:4000/api/product/images/616d4cf1cda3472be42e6e09",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1105_1.jpg?alt=media&token=a5b8b06a-9886-46ed-8fac-52e41ca46575",
             imageAlt:
-              "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Mirrors|| Murano Glass",
+          },
+          {
+            name: "Mirrors",
+            href: "/collection:mirrors",
+            imageSrc:
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1104_2.jpg?alt=media&token=5668d8c4-0e73-4a5f-b9d8-553de67c9d4d",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Mirrors|| Murano Glass",
+          },
+          {
+            name: "Mirrors",
+            href: "/collection:mirrors",
+            imageSrc:
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1101_1.jpg?alt=media&token=b4718967-d4a9-49fb-80b9-e48e23acbc83",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Mirrors|| Murano Glass",
+          },
+          {
+            name: "Mirrors",
+            href: "/collection:mirrors",
+            imageSrc:
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1095_1.jpg?alt=media&token=8ff1f8ed-8e97-45bd-9c37-36d302a40ebc",
+            imageAlt:
+              "Nonpareil Collection: The Ultimate Destination For Luxurious Mirrors|| Murano Glass",
           },
         ],
       },

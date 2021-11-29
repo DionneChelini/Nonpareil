@@ -405,6 +405,8 @@ export default function Example({ navigation, userNavigation, types }) {
                                     <option>Cabinets</option>{" "}
                                     <option>Chests of Drawers</option>
                                     <option>Cocktail Cabinets</option>
+                                    <option>Credenzas &amp; Sideboards</option>
+                                    <option>Bookcases &amp; Display</option>
                                   </Fragment>
                                 ) : (
                                   ""
@@ -438,6 +440,8 @@ export default function Example({ navigation, userNavigation, types }) {
                                     <option>Benches &amp; Ottomans</option>{" "}
                                     <option>Armchairs</option>{" "}
                                     <option>Chaise Longues</option>
+                                    <option>Sidechairs</option>
+                                    <option>Dining Chairs</option>
                                   </Fragment>
                                 ) : (
                                   ""

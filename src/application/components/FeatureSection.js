@@ -75,7 +75,7 @@ Example.defaultProps = {
       price: "$35,000",
       href: "/",
       imageSrc:
-        "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1012_2.jpg?alt=media&token=58f540ae-d14e-4dfe-a647-f67138c7d562",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
       imageAlt: "Nonpareil",
     },
     {
