@@ -35,7 +35,7 @@ export default function Example({ products }) {
                       />
                     </div>
                     <div className='mt-6 mb-10'>
-                      <h3 className='mt-1 font-semibold text-gray-900'>
+                      <h3 className='mt-1 font-semibold text-gray-800'>
                         <Link to={product.href}>
                           <span className='absolute inset-0' />
                           {product.title}
@@ -52,7 +52,7 @@ export default function Example({ products }) {
 
         <div className='mt-12 flex px-4 sm:hidden'>
           <Link
-            to='/collection'
+            to='/collection:all'
             className='text-sm font-semibold text-yellow-800 hover:text-yellow-700'
           >
             Discover more<span aria-hidden='true'> &rarr;</span>
@@ -70,203 +70,156 @@ Example.defaultProps = {
   products: [
     {
       id: 1,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
+      title: "Leather Upholstered Sideboard",
+      price: "$AUS 41,115.01",
+      href: "/product_overview:2G57mx4LZCNssfcLUWwc",
       imageSrc:
-        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1235_1.jpg?alt=media&token=11eb9c5a-18c9-4afb-8198-e2b4ced05470",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Cocktail Cabinets || Luxurious Designer Cocktail Cabinets",
     },
     {
       id: 2,
-      title: "Title",
+      title: "Storage Cabinet With Solid Back Fretwork",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 18,665.01",
+      href: "/product_overview:KrN5SsLkKwhpaDo1iTzz",
       imageSrc:
-        "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1020_1.jpg?alt=media&token=74054ec6-4346-442b-bc2e-e65b1274cb78",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1163_1.jpg?alt=media&token=eed0342e-b5fc-4e9b-94cc-39704208824f",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Cabinets || Luxurious Designer Cabinets",
     },
     {
       id: 3,
-      title: "Title",
+      title: "Luxury Cut Crystal Architectural Table Lamp",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 14,469.84",
+      href: "/product_overview:Oy3pbW3djfRAy2WsrFId",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1041_1.jpg?alt=media&token=28d4d79b-29fc-49a3-a737-17f52f90c64a",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Lighting || Luxurious Designer Lighting",
     },
     {
       id: 4,
-      title: "Title",
+      title: "Sculptural Table Lamp Gold Majolica",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 11,555.19",
+      href: "/product_overview:XrMnOVtOsAaK4gJskB61",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1486_1.jpg?alt=media&token=57dfad66-adae-4a66-8fda-6195c3bada6e",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Lighting || Luxurious Designer Lighting",
     },
     {
       id: 5,
-      title: "Title",
+      title: "Mirror Polished Metal Bench",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 11,258.26",
+      href: "/product_overview:PhIhcOuH5a1UbQIaMTxB",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1581_1.jpg?alt=media&token=47615189-f04c-47ee-9c1c-a15856e15d9f",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Luxurious Designer Seating",
     },
     {
       id: 6,
-      title: "Title",
+      title: "White Macassar Ebony Night Stand",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 30,231.63",
+      href: "/product_overview:FkQxPBn1ZujhvRfO6vLm",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1117_1.jpg?alt=media&token=c7545f5f-7041-4f53-b721-bfef51d6fbdb",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Cabinets || Luxurious Designer Cabinets",
     },
     {
       id: 7,
-      title: "Title",
+      title: "Art Deco Stylised Sofa",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 34,959.85",
+      href: "/product_overview:VHrz8kLeJhAbGE38WDek",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1652_3.jpg?alt=media&token=509e2349-866d-4e34-89e8-bf2986430dfb",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Sofas || Luxurious Designer Sofas",
     },
     {
       id: 8,
-      title: "Title",
+      title: "Macassar Ebony Chest Of Drawers",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 66,957.01",
+      href: "/product_overview:TTBCVUeJL20yaeHM7oEi",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1141_2.jpg?alt=media&token=ea3e3f2d-64f9-4236-a194-f64031f02e06",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Chests of Drawers || Luxurious Designer Chests of Drawers",
     },
     {
       id: 9,
-      title: "Title",
+      title: "Architectural Gothic Carved Cabinet",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 97,345.85",
+      href: "/product_overview:TkKDAIXQyL3l0nQ3cFcF",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1184_4.jpg?alt=media&token=a3371cfc-2866-49ad-9b5a-2149113caebb",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Cabinets || Luxurious Designer Cabinets",
     },
     {
       id: 10,
-      title: "Title",
+      title: "Modular Sofa Seating With Bronze Metal Seat Rail",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 43,926.30",
+      href: "/product_overview:m14tP8KMqU6MuX878A1o",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1660_4.jpg?alt=media&token=ed66054e-899f-44fc-a259-1a4b49adc662",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Sofas|| Luxurious Designer Sofas",
     },
     {
       id: 11,
-      title: "Title",
+      title: "LEATHER FRAME BED",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 22,035.50",
+      href: "/product_overview:1IG2fBrunKrQKi6L9OQP",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Beds",
     },
     {
       id: 12,
-      title: "Title",
+      title: "Macassar Ebony Sideboard",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 55,698.76",
+      href: "/product_overview:6MYZ5kEMbSS8k33e8O0J",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1194_2.jpg?alt=media&token=51cedb78-9e62-4fc2-b534-47e67720b5a7",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Sideboards || Luxurious Designer Sideboards",
     },
     {
       id: 13,
-      title: "Title",
+      title: "Murano Glass Mirrors - Gold Glass Frame",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 32,293.43",
+      href: "/product_overview:J06MBUIzseJvbNn56bl6",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1102_3.jpg?alt=media&token=2cc64c77-0526-493b-8454-1763ac31f346",
+      imageAlt:
+        "NNonpareil Collection: The Ultimate Destination For Luxurious Mirrors || Luxurious Designer Mirrors",
     },
     {
       id: 14,
-      title: "Title",
+      title: "Rosewood & Velvet Upholstered Chest Of Drawers",
 
-      price: "$35,000",
-      href: "/",
+      price: "$AUS 22,996.71",
+      href: "/product_overview:yABBP36QO51N0ngeMtlr",
       imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 15,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 16,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 17,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 18,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 19,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
-    },
-    {
-      id: 20,
-      title: "Title",
-
-      price: "$35,000",
-      href: "/",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg",
-      imageAlt: "Nonpareil",
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1130_3.jpg?alt=media&token=ddc599ba-b72f-4a05-9c5f-7299f8afed2a",
+      imageAlt:
+        "Nonpareil Collection: The Ultimate Destination For Luxurious Chests of Drawers || Luxurious Designer Chests of Drawers",
     },
 
     // More products...

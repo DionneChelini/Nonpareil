@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 export default function InputTags({ selected, name, tags, setTags }) {
   const addTags = (e) => {
-    if (e.key === 'Enter' && e.target.value !== '') {
+    if (e.key === "Enter" && e.target.value !== "") {
       setTags([...tags, e.target.value]);
       selected([...tags, e.target.value], name);
     }
-    e.target.value = '';
+    e.target.value = "";
   };
 
   const removeTag = (indexToRemove) => {
@@ -28,10 +28,11 @@ export default function InputTags({ selected, name, tags, setTags }) {
           <input
             type='text'
             name={name}
+            autoComplete='off'
             id={name}
             className='shadow-sm focus:ring-yellow-500 focus:border-yellow-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md'
-            onKeyUp={(e) => (e.key === 'Enter' ? addTags(e) : null)}
-            onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+            onKeyUp={(e) => (e.key === "Enter" ? addTags(e) : null)}
+            onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
           />
           <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
             <kbd className='inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400'>

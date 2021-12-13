@@ -5,12 +5,13 @@ import {
   faCcApplePay,
   faCcAmazonPay,
 } from "@fortawesome/free-brands-svg-icons";
+import ReactGA from "react-ga";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 export default function Example() {
   useEffect(() => {
     window.scroll(0, 0);
-
+    ReactGA.pageview(window.location.pathname + window.location.search);
     //eslint-disable-next-line
   }, []);
   return (

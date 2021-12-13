@@ -551,7 +551,7 @@ Example.defaultProps = {
             name: "Dinning Tables",
             href: "/collection:tables",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1414_1.jpg?alt=media&token=b6ea849c-fbfd-47d1-a96e-57c8013603b8",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1430_1.jpg?alt=media&token=fc007fc0-1c03-4cbd-8845-c6a949f32816",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },

@@ -361,7 +361,7 @@ export default function Example({ navigation, userNavigation, types }) {
                                 required
                                 onChange={handleInput}
                                 name='category'
-                                autoComplete='category'
+                                autoComplete='off'
                                 className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm'
                                 value={productData.category}
                                 onClick={selectCategoryHandler}
@@ -387,7 +387,7 @@ export default function Example({ navigation, userNavigation, types }) {
                                 required
                                 onChange={handleInput}
                                 name='subcategory'
-                                autoComplete='subcategory'
+                                autoComplete='off'
                                 className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm'
                                 placeholder={productData.subcategory}
                               >
@@ -455,6 +455,8 @@ export default function Example({ navigation, userNavigation, types }) {
                                     <option>Console Tables</option>{" "}
                                     <option>Hall Tables</option>{" "}
                                     <option>Dinning Tables</option>
+                                    <option>Desks &amp; Bureaus</option>
+                                    <option>Side Tables</option>
                                   </Fragment>
                                 ) : (
                                   ""

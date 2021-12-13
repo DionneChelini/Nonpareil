@@ -15,6 +15,7 @@ import Contact from "./application/pages/Contact";
 import Mission from "./application/pages/Mission";
 import SomethingWentWrong from "./application/pages/SomethingWentWrong";
 import Login from "./application/pages/Login";
+import Thankyou from "./application/pages/Thankyou";
 import Dashboard from "./application/pages/Dashboard";
 import Returns from "./application/pages/Returns";
 import Faq from "./application/pages/Faq";
@@ -22,13 +23,18 @@ import ProductContext from "./context/products/productContext";
 import AuthenticatedRoute from "./context/auth/AuthenticatedRoute";
 // Context
 import AuthContextProvider from "./context/auth/AuthState";
+import ReactGa from "react-ga";
 //Analytics
-import { initialize } from "react-ga";
 const App = () => {
   const productContext = useContext(ProductContext);
   const { loading } = productContext;
   useEffect(() => {
-    initialize();
+    ReactGa.initialize("UA-212882725-1", {
+      titleCase: false,
+      gaOptions: {
+        siteSpeedSampleRate: 100,
+      },
+    });
   }, []);
 
   return (
@@ -53,6 +59,7 @@ const App = () => {
           <Route exact path='/how_to_order' component={HowToOrder} />
           <Route exact path='/our_mission' component={Mission} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/thankyou' component={Thankyou} />
           <AuthenticatedRoute exact path='/dashboard' component={Dashboard} />
           <Route exact path='/server_error' component={SomethingWentWrong} />
           <Route component={ErrorPage} />

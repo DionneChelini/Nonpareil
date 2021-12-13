@@ -9,6 +9,7 @@ import MainLoader from "../components/MainLoader";
 import { motion } from "framer-motion";
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import ReactGA from "react-ga";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -46,7 +47,9 @@ export default function Example({ filters, breadcrumbs }) {
 
   useEffect(() => {
     window.scroll(0, 0);
+    ReactGA.pageview(window.location.pathname + window.location.search);
     getProductData(params, setMobileFiltersOpen);
+
     //eslint-disable-next-line
   }, [history, error]);
 

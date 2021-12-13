@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-
+import ReactGA from "react-ga";
 const faqs = [
   {
     question: "Do you ship to my country",
@@ -53,6 +53,7 @@ const faqs = [
 export default function Example() {
   useEffect(() => {
     window.scroll(0, 0);
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
     //eslint-disable-next-line
   }, []);

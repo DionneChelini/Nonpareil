@@ -89,7 +89,7 @@ const Example = ({ footerNavigation, history }) => {
                   </div>
                   <div className='ml-3 text-base text-gray-400'>
                     <p>+61 (03) 8373 7798</p>
-                    <p className='mt-1'>Mon-Sat 8am to 6pm PST</p>
+                    <p className='mt-1'>Mon-Fri 9am to 5pm PST</p>
                   </div>
                 </div>
                 <div className='mt-6 flex'>
@@ -151,14 +151,14 @@ Example.propTypes = {
 Example.defaultProps = {
   footerNavigation: {
     shop: [
-      { name: "Beds", href: "#" },
-      { name: "Case Goods", href: "#" },
-      { name: "Objects", href: "#" },
-      { name: "Lighting", href: "#" },
-      { name: "Office", href: "#" },
-      { name: "Seating", href: "#" },
-      { name: "Tables", href: "#" },
-      { name: "Mirrors", href: "#" },
+      { name: "Beds", href: "/collection:beds" },
+      { name: "Case Goods", href: "/collection:caseGoods" },
+
+      { name: "Lighting", href: "/collection:lighting" },
+      { name: "Office", href: "/collection:office" },
+      { name: "Seating", href: "/collection:seating" },
+      { name: "Tables", href: "/collection:tables" },
+      { name: "Mirrors", href: "/collection:mirrors" },
     ],
     information: [
       { name: "Our Mission", href: "/our_mission" },

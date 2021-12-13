@@ -1,8 +1,9 @@
-import { useCallback, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
-import Logo from '../components/Logo';
+import { useCallback, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
+import ReactGA from "react-ga";
 /*
   This example requires Tailwind CSS v2.0+ 
   
@@ -21,7 +22,9 @@ import Logo from '../components/Logo';
 */
 export default function Example() {
   const history = useHistory();
-  useEffect(() => {}, [history]);
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [history]);
   const [error, setError] = useState(false);
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ export default function Example() {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value).then(
         () => {
-          history.push('/dashboard');
+          history.push("/dashboard");
         }
       );
     } catch (error) {
@@ -56,7 +59,7 @@ export default function Example() {
         */}
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-          <Logo height={'h-36 rounded-lg'} />
+          <Logo height={"h-36 rounded-lg"} />
         </div>
 
         <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>

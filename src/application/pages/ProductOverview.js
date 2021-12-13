@@ -10,11 +10,12 @@ import MainLoader from "../components/MainLoader";
 import { motion } from "framer-motion";
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import ReactGA from "react-ga";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({ colors, details }) {
+export default function Example(props) {
   const productContext = useContext(ProductContext);
   const { product, getProduct, loading, error, id_error } = productContext;
   const [selectedColor, setSelectedColor] = useState();
@@ -22,7 +23,7 @@ export default function Example({ colors, details }) {
 
   useEffect(() => {
     window.scroll(0, 0);
-
+    ReactGA.pageview(window.location.pathname + window.location.search);
     getProduct(id.split(":").join(""));
   }, [id, error]);
 
@@ -56,7 +57,7 @@ export default function Example({ colors, details }) {
                             <span className='absolute inset-0 rounded-md overflow-hidden'>
                               <img
                                 src={url.urls}
-                                alt=''
+                                alt={product.ImageAlt}
                                 className='w-full h-full object-center object-cover'
                               />
                             </span>
@@ -81,7 +82,7 @@ export default function Example({ colors, details }) {
                     <Tab.Panel key={uuid()}>
                       <img
                         src={url.urls}
-                        alt={product.id}
+                        alt={product.ImageAlt}
                         className='w-full h-full object-center object-cover sm:rounded-lg'
                       />
                     </Tab.Panel>

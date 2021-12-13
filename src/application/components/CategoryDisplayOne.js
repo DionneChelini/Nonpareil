@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Example({ categories }) {
   return (
@@ -50,32 +50,32 @@ Example.propTypes = {
 Example.defaultProps = {
   categories: [
     {
-      name: 'Beds',
-      href: '/collection:beds',
+      name: "Beds",
+      href: "/collection:beds",
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1086_1.jpg?alt=media&token=48accc6d-48b9-41fb-b1fc-a7e66f136d05',
+        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1086_1.jpg?alt=media&token=4bd984ef-897b-4697-b643-6299a33019ce",
       imageAlt:
-        'Brown leather key ring with brass metal loops and rivets on wood table.',
-      description: 'Luxurious beds & designer headboards.',
+        "Brown leather key ring with brass metal loops and rivets on wood table.",
+      description: "Luxurious beds & designer headboards.",
     },
     {
-      name: 'Case Goods',
-      href: '/collection:caseGoods',
+      name: "Case Goods",
+      href: "/collection:caseGoods",
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1118_3.jpg?alt=media&token=8dd857ef-2dfe-4ad6-8e8f-2f38724264cd',
+        "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1118_3.jpg?alt=media&token=8dd857ef-2dfe-4ad6-8e8f-2f38724264cd",
       imageAlt:
-        'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
+        "Natural leather mouse pad on white desk next to porcelain mug and keyboard.",
       description:
-        'Designer cabinets, luxury display units & high end sideboards.',
+        "Designer cabinets, luxury display units & high end sideboards.",
     },
     {
-      name: 'Lighting',
-      href: '/collection:lighting',
+      name: "Lighting",
+      href: "/collection:lighting",
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1476_2.jpg?alt=media&token=e77d348e-faca-4b22-9012-ad87074532cf',
+        "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1476_2.jpg?alt=media&token=e77d348e-faca-4b22-9012-ad87074532cf",
       imageAlt:
-        'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
-      description: 'Luxurious Italian lighting design.',
+        "Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.",
+      description: "Luxurious Italian lighting design.",
     },
   ],
 };
