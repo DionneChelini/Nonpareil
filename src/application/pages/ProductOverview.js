@@ -98,13 +98,13 @@ export default function Example(props) {
 
                 <div className='mt-3'>
                   <h2 className='sr-only'>Product information</h2>
-                  <p className='text-3xl text-gray-900'>
+                  {/* <p className='text-3xl text-gray-900'>
                     $
                     {new Intl.NumberFormat("en-IN", {
                       style: "currency",
                       currency: "AUS",
                     }).format(product.price)}
-                  </p>
+                  </p> */}
                 </div>
 
                 {/* Reviews */}
@@ -151,9 +151,9 @@ export default function Example(props) {
                       <Link
                         to='/contact_us'
                         type='submit'
-                        className='max-w-xs flex-1 bg-black border border-transparent py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full'
+                        className='max-w-xs flex-1 bg-black border border-transparent py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full'
                       >
-                        Contact representative
+                        MAKE ENQUIRY
                       </Link>
                     </motion.div>
                   </div>

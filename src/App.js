@@ -22,20 +22,20 @@ import Faq from "./application/pages/Faq";
 import ProductContext from "./context/products/productContext";
 import AuthenticatedRoute from "./context/auth/AuthenticatedRoute";
 // Context
+
+import WhatsAppWidget from "react-whatsapp-widget";
+import "react-whatsapp-widget/dist/index.css";
 import AuthContextProvider from "./context/auth/AuthState";
 import ReactGa from "react-ga";
+ReactGa.initialize("UA-212882725-1", {
+  gaOptions: {
+    siteSpeedSampleRate: 100,
+  },
+});
 //Analytics
 const App = () => {
   const productContext = useContext(ProductContext);
   const { loading } = productContext;
-  useEffect(() => {
-    ReactGa.initialize("UA-212882725-1", {
-      titleCase: false,
-      gaOptions: {
-        siteSpeedSampleRate: 100,
-      },
-    });
-  }, []);
 
   return (
     <AuthContextProvider>
@@ -64,7 +64,11 @@ const App = () => {
           <Route exact path='/server_error' component={SomethingWentWrong} />
           <Route component={ErrorPage} />
         </Switch>
+
         {loading ? null : <Footer />}
+        <div className='sticky bottom-10 right-0'>
+          {/* <WhatsAppWidget phoneNumber='XXXXXXXX' sendButton='WhatsApp' /> */}
+        </div>
       </Router>
     </AuthContextProvider>
   );

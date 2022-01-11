@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import ProductContext from "./productContext";
 import productReducer from "./productReducer";
 import {
@@ -7,6 +7,7 @@ import {
   SET_PRODUCT,
   SET_LOADING,
   PRODUCT_ID_DOES_NOT_EXIST_ERROR,
+  SET_LATEST_DOC,
 } from "../types";
 import { db } from "../../firebase";
 import {
@@ -16,6 +17,9 @@ import {
   getDocs,
   getDoc,
   doc,
+  limit,
+  startAfter,
+  orderBy,
 } from "firebase/firestore";
 
 export default function ProductState(props) {
@@ -28,6 +32,25 @@ export default function ProductState(props) {
   };
 
   const [state, dispatch] = useReducer(productReducer, initialState);
+
+  const next = async (latestDoc) => {
+    let data = [];
+    let first = query(
+      collection(db, "products"),
+      orderBy("title"),
+      startAfter(latestDoc),
+      limit(5)
+    );
+
+    const querySnapshot = await getDocs(first);
+    // Get the last visible document
+
+    querySnapshot.forEach((doc) => {
+      data.push({ ...doc.data(), id: doc.id });
+    });
+
+    dispatch({ type: GET_PRODUCTS, payload: data });
+  };
 
   const getProductData = async (params, setMobileFiltersOpen) => {
     setLoading(true);
@@ -115,7 +138,7 @@ export default function ProductState(props) {
 
   const getCategoryData = async (category, setMobileFiltersOpen) => {
     // setLoading(true);
-    console.log("fired");
+
     //Uppercase the first letter
     category = category.charAt(0).toUpperCase() + category.slice(1);
     if (category === "Case-goods") {
@@ -147,6 +170,7 @@ export default function ProductState(props) {
   };
 
   const setLoading = (bool) => {
+    console.log("is this being called");
     dispatch({ type: SET_LOADING, payload: bool });
   };
 
@@ -157,6 +181,8 @@ export default function ProductState(props) {
         getProductData: getProductData,
         product: state.product,
         setProduct,
+
+        next,
         getCategoryData,
         error: state.error,
         id_error: state.id_error,

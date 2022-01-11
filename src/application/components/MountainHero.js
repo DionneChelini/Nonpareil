@@ -136,7 +136,7 @@ export default function Example() {
           className='relative max-w-3xl mx-auto py-22 px-6 flex flex-col items-center pt-24 text-center sm:pb-32 lg:px-0'
           initial={{ opacity: 0, y: "20px" }}
           animate={{ opacity: 1, y: "0px" }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 2, delay: 1 }}
         >
           <img
             src='https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/assets%2Flogo.png?alt=media&token=3f281ca1-26cd-4aa2-ab81-a52a83f7f144'
@@ -148,10 +148,10 @@ export default function Example() {
           </p>
           <motion.div
             whileHover={{
-              scale: 1.05,
+              scale: 1.02,
             }}
             whileTap={{
-              scale: 1.05,
+              scale: 1.02,
             }}
           >
             <Link
@@ -159,9 +159,9 @@ export default function Example() {
               style={{
                 border: "1px solid #332C2C",
                 color: "#EDD3A7",
-                background: "#0D0D0D",
               }}
-              className='bg-black border-transparent mt-14 flex py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
+              id='home_button'
+              className='border-transparent mt-14 flex py-4 px-8 text-base font-lg text-white shadow-xl'
             >
               Discover Collection{" "}
               <ArrowDownIcon className='h-6 w-6 pl-2' aria-hidden='true' />

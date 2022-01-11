@@ -100,7 +100,7 @@ const Example = ({ footerNavigation, history }) => {
                     />
                   </div>
                   <div className='ml-3 text-base text-gray-400'>
-                    <p>enquiry@nonpareil.com.au</p>
+                    <p>enquiry@nonpareil-collection.com.au</p>
                   </div>
                 </div>
               </div>

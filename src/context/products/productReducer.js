@@ -4,7 +4,8 @@ import {
   SET_PRODUCT,
   SET_LOADING,
   PRODUCT_ID_DOES_NOT_EXIST_ERROR,
-} from '../types';
+  SET_LATEST_DOC,
+} from "../types";
 
 let reducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +13,11 @@ let reducer = (state, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case SET_LATEST_DOC:
+      return {
+        ...state,
+        latestDoc: { ...action.payload },
       };
     case SET_PRODUCT:
       return {

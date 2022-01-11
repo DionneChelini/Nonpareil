@@ -41,7 +41,6 @@ export default function Example({ products }) {
                           {product.title}
                         </Link>
                       </h3>
-                      <p className='mt-1 text-gray-900'>{product.price}</p>
                     </div>
                   </div>
                 </li>
