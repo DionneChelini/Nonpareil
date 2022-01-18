@@ -14,7 +14,7 @@ export default function Example() {
         <main className='flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex-shrink-0 flex justify-center'>
             <a href='/' className='inline-flex'>
-              <Logo height={"h-16"} />
+              <Logo classes={"h-16"} stroke={""} />
             </a>
           </div>
           <div className='py-16'>

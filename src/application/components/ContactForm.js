@@ -1,6 +1,5 @@
 import { MailIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import useFirebase from "../../hooks/useFirebase";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Switch } from "@headlessui/react";
@@ -13,7 +12,6 @@ export default function Example() {
     MERGE2: "",
     MERGE0: "",
   });
-  useFirebase({ user, submit, setSubmit, setUser });
 
   const onSubmit = (e) => {
     e.preventDefault();

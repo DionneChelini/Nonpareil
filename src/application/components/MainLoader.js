@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Animation from './Loader';
+import React from "react";
+import { motion } from "framer-motion";
+import Animation from "./Loader";
 export default function Example() {
   return (
     <div>
@@ -8,13 +8,13 @@ export default function Example() {
         id='Layer_1'
         data-name='Layer 1'
         viewBox='0 0 1919.99 1080'
-        stroke={'black'}
+        stroke={"black"}
         fill='transparent'
         className='h-64'
-        initial={{ opacity: 0, y: '15px' }}
+        initial={{ opacity: 0, y: "15px" }}
         animate={{
           opacity: 1,
-          y: '0px',
+          y: "0px",
         }}
         transition={{ duration: 1.5, delay: 0.3 }}
       >

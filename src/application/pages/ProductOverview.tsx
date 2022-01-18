@@ -2,38 +2,49 @@ import { useContext, useState, useEffect, Fragment } from "react";
 import { Disclosure, Tab } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/solid";
 import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/outline";
-import ProductContext from "../../context/products/productContext";
+
 import ProductFeatures from "../components/ProductFeatures";
-import PropTypes from "prop-types";
 import { useParams, Link } from "react-router-dom";
 import MainLoader from "../components/MainLoader";
+import { setError } from "../../redux/errorSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks/useRedux";
 import { motion } from "framer-motion";
 import { Redirect } from "react-router-dom";
+import { useFirebaseFirestore } from "../../hooks/useFirebaseFirestore";
 import { v4 as uuid } from "uuid";
 import ReactGA from "react-ga";
-function classNames(...classes) {
+import { setSingleProduct } from "../../redux/productSlice";
+import { setLoading } from "../../redux/loaderSlice";
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example(props) {
-  const productContext = useContext(ProductContext);
-  const { product, getProduct, loading, error, id_error } = productContext;
+export default function Example() {
   const [selectedColor, setSelectedColor] = useState();
-  const { id } = useParams();
+  const { id }: any = useParams();
+  const dispatch = useAppDispatch();
+  const { getSingleProduct } = useFirebaseFirestore();
+  const { singleProduct } = useAppSelector((state) => state.products);
+  const { loading } = useAppSelector((state) => state.loader);
+  const { error } = useAppSelector((state) => state.error);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+    getSingleProduct(id.split(":").join(""));
+  }, [id, error]);
 
   useEffect(() => {
     window.scroll(0, 0);
-    ReactGA.pageview(window.location.pathname + window.location.search);
-    getProduct(id.split(":").join(""));
-  }, [id, error]);
+  }, []);
 
-  if (error || id_error) {
+  if (error) {
     return <Redirect to='server_error' />;
   }
 
   return (
     <Fragment>
-      {!product || loading ? (
+      {!singleProduct || loading ? (
         <div className='h-screen flex items-center justify-center container mx-auto'>
           <MainLoader />
         </div>
@@ -46,18 +57,20 @@ export default function Example(props) {
                 {/* Image selector */}
                 <div className='mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none'>
                   <Tab.List className='grid grid-cols-4 gap-6'>
-                    {product.urls.map((url) => (
+                    {singleProduct.urls.map((url: any) => (
                       <Tab
                         key={uuid()}
                         className='relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50'
                       >
                         {({ selected }) => (
                           <>
-                            <span className='sr-only'>{product.title}</span>
+                            <span className='sr-only'>
+                              {singleProduct.title}
+                            </span>
                             <span className='absolute inset-0 rounded-md overflow-hidden'>
                               <img
                                 src={url.urls}
-                                alt={product.ImageAlt}
+                                alt={singleProduct.ImageAlt}
                                 className='w-full h-full object-center object-cover'
                               />
                             </span>
@@ -78,11 +91,11 @@ export default function Example(props) {
                 </div>
 
                 <Tab.Panels className='w-full aspect-w-1 aspect-h-1'>
-                  {product.urls.map((url) => (
+                  {singleProduct.urls.map((url: any) => (
                     <Tab.Panel key={uuid()}>
                       <img
                         src={url.urls}
-                        alt={product.ImageAlt}
+                        alt={singleProduct.ImageAlt}
                         className='w-full h-full object-center object-cover sm:rounded-lg'
                       />
                     </Tab.Panel>
@@ -93,7 +106,7 @@ export default function Example(props) {
               {/* Product info */}
               <div className='mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0'>
                 <h1 className='text-3xl font-extrabold tracking-tight text-gray-900'>
-                  {product.title}
+                  {singleProduct.title}
                 </h1>
 
                 <div className='mt-3'>
@@ -116,7 +129,7 @@ export default function Example(props) {
                         <StarIcon
                           key={uuid()}
                           className={classNames(
-                            product.rating > rating
+                            singleProduct.rating > rating
                               ? "text-yellow-500"
                               : "text-yellow-300",
                             "h-5 w-5 flex-shrink-0"
@@ -125,7 +138,7 @@ export default function Example(props) {
                         />
                       ))}
                     </div>
-                    <p className='sr-only'>{product.id} out of 5 stars</p>
+                    <p className='sr-only'>{singleProduct.id} out of 5 stars</p>
                   </div>
                 </div>
 
@@ -134,7 +147,9 @@ export default function Example(props) {
 
                   <div
                     className='text-base text-gray-700 space-y-6'
-                    dangerouslySetInnerHTML={{ __html: product.description }}
+                    dangerouslySetInnerHTML={{
+                      __html: singleProduct.description,
+                    }}
                   />
                 </div>
 
@@ -164,7 +179,7 @@ export default function Example(props) {
                     Additional details
                   </h2>
                   <div className='border-t divide-y divide-gray-200'>
-                    {product.details.map((detail) => (
+                    {singleProduct.details.map((detail: any) => (
                       <Disclosure as='div' key={uuid()}>
                         {({ open }) => (
                           <>
@@ -198,7 +213,7 @@ export default function Example(props) {
                               className='pb-6 prose prose-sm'
                             >
                               <ul>
-                                {detail.item.map((i) => (
+                                {detail.item.map((i: any) => (
                                   <li key={uuid()}>{i}</li>
                                 ))}
                               </ul>
@@ -218,7 +233,3 @@ export default function Example(props) {
     </Fragment>
   );
 }
-
-Example.propTypes = {
-  product: PropTypes.object,
-};

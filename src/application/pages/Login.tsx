@@ -4,22 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import ReactGA from "react-ga";
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+
 export default function Example() {
   const history = useHistory();
   useEffect(() => {
@@ -59,7 +44,7 @@ export default function Example() {
         */}
       <div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-          <Logo height={"h-36 rounded-lg"} />
+          <Logo classes={"h-36 rounded-lg"} stroke={""} />
         </div>
 
         <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>

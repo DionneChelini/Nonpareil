@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import ProductState from './context/products/ProductState';
-import AlertState from './context/alert/AlertState';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AlertState>
-      <ProductState>
-        <App />
-      </ProductState>
-    </AlertState>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

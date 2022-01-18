@@ -133,12 +133,6 @@ export default function Example() {
                     background: "#0D0D0D",
                   }}
                   className='bg-black border-transparent mt-14 flex py-4 px-8 text-base font-lg text-white  hover:bg-gray-900 shadow-xl'
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 1.05,
-                  }}
                 >
                   Contact representative{" "}
                 </Link>

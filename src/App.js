@@ -1,4 +1,3 @@
-import { useContext, useEffect } from "react";
 import Footer from "./application/components/Footer";
 import Navigation from "./application/layouts/Navbar";
 import Storefront from "./application/pages/Storefront";
@@ -19,8 +18,10 @@ import Thankyou from "./application/pages/Thankyou";
 import Dashboard from "./application/pages/Dashboard";
 import Returns from "./application/pages/Returns";
 import Faq from "./application/pages/Faq";
-import ProductContext from "./context/products/productContext";
+
+import { useAppSelector } from "../src/hooks/useRedux";
 import AuthenticatedRoute from "./context/auth/AuthenticatedRoute";
+
 // Context
 
 import WhatsAppWidget from "react-whatsapp-widget";
@@ -34,8 +35,7 @@ ReactGa.initialize("UA-212882725-1", {
 });
 //Analytics
 const App = () => {
-  const productContext = useContext(ProductContext);
-  const { loading } = productContext;
+  const loading = useAppSelector((state) => state.loader.loading);
 
   return (
     <AuthContextProvider>

@@ -10,62 +10,80 @@ import {
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon, PlusSmIcon } from "@heroicons/react/solid";
-import ProductContext from "../../context/products/productContext";
 import { useHistory, useParams, Link } from "react-router-dom";
 import MainLoader from "../components/MainLoader";
 import { motion } from "framer-motion";
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { setError } from "../../redux/errorSlice";
 import ReactGA from "react-ga";
 import useFirebasePagination from "../../hooks/useFirebasePagination";
-
+import { useAppSelector, useAppDispatch } from "../../hooks/useRedux";
+ReactGA.pageview(window.location.pathname + window.location.search);
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-interface products {
-  title: string;
-  description: string;
-  price: string;
-  id: string;
-  urls: any;
-  category: string;
-  imageAlt: string;
-}
+// interface productData {
+//   productData: {
+//     id: string;
+//     title: string;
+//     description: string;
+//     price: string;
+//     urls: any[];
+//     category: string;
+//     subcategory?: string;
+//     imageAlt: string;
+//     details: [];
+//   }[];
+// }
+const url = {
+  all: "/collection:all",
+  tables: "/collection:tables",
+  seating: "/collection:seating",
+  mirrors: "/collection:mirrors",
+  lighting: "/collection:lighting",
+  office: "/collection:office",
+  caseGoods: "/collection:caseGoods",
+  beds: "/collection:beds",
+};
 
-export default function Example() {
+export default function Collection() {
+  const loading = useAppSelector((state) => state.loader.loading);
+  const fetching = useAppSelector((state) => state.fetcher.fetching);
+  const error = useAppSelector((state) => state.error.error);
+  const {
+    productDataAll,
+    seatingData,
+    lightingData,
+    tableData,
+    officeData,
+    mirrorsData,
+    casegoodData,
+    bedData,
+  } = useAppSelector((state) => state.products);
   const history = useHistory();
   const { location } = useHistory();
   const params = useParams<any>();
-  const { all, caseGoods, next, lastAll, loading } = useFirebasePagination(
-    location.pathname
-  );
-
-  const productContext = useContext(ProductContext);
-  const {
-    products,
-    getProductData,
-    error,
-
-    getCategoryData,
-    getProduct,
-    latestDoc,
-  } = productContext;
+  const { next } = useFirebasePagination(location.pathname, url);
+  const dispatch = useAppDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const observer: React.MutableRefObject<any> = useRef();
 
-  const lastProductRef = useCallback((node) => {
-    console.log(loading);
-    if (loading) return;
-
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        console.log("running");
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, []);
+  const lastProductRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (fetching) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          next(params.category);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, fetching]
+  );
 
   //* This function handles the individual product being put into state
 
@@ -75,35 +93,39 @@ export default function Example() {
     try {
       return history.push(`/product_overview:${id}`);
     } catch (error) {
-      console.log("something went wrong");
+      dispatch(setError(true));
     }
   };
 
   const handleFilterSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
-    getCategoryData(e.target.value, setMobileFiltersOpen);
+    e.preventDefault();
+    if (e.target.value === "case-goods") {
+      history.push(`/collection:caseGoods`);
+      return;
+    } else {
+      history.push(`/collection:${e.target.value}`);
+    }
   };
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
     // getProductData(params, setMobileFiltersOpen);
-
     //eslint-disable-next-line
-  }, [loading]);
+  }, [loading, error, params]);
 
   if (error) {
     return <Redirect to='server_error' />;
   }
 
-  // if (!products || loading) {
-  //   return (
-  //     <div className='h-screen flex items-center justify-center container mx-auto'>
-  //       <MainLoader />
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className='h-screen flex items-center justify-center container mx-auto'>
+        <MainLoader />
+      </div>
+    );
+  }
 
   if (!error) {
     return (
@@ -159,7 +181,7 @@ export default function Example() {
 
                     {/* Filters */}
                     <form className='mt-4'>
-                      {filters.map((section, i) => (
+                      {filters.map((section) => (
                         <Disclosure
                           as='div'
                           key={uuid()}
@@ -330,16 +352,548 @@ export default function Example() {
                     Products
                   </h2>
 
-                  {location.pathname === "/collection:all" && all && (
+                  {location.pathname === "/collection:all" && (
                     <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
-                      {all.map((product: products, index: string) =>
-                        all.length === index + 1 ? (
+                      {productDataAll.map((product: any, index: any) =>
+                        productDataAll.length === index + 1 ? (
                           <div
                             ref={lastProductRef}
                             id={product.id}
                             onClick={(e: any) => handleOnClick(e, product.id)}
                             key={uuid()}
-                            className='group relative bg-pink-500 p-8 border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:tables" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {tableData.map((product: any, index: any) =>
+                        tableData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:seating" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {seatingData.map((product: any, index: any) =>
+                        seatingData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:caseGoods" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {casegoodData.map((product: any, index: any) =>
+                        casegoodData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:mirrors" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {mirrorsData.map((product: any, index: any) =>
+                        mirrorsData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:lighting" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {lightingData.map((product: any, index: any) =>
+                        lightingData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:beds" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {bedData.map((product: any, index: any) =>
+                        bedData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
+                          >
+                            <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                              <img
+                                src={product.urls[0].urls}
+                                alt={product.imageAlt}
+                                className='w-full h-full object-center object-cover sm:w-full sm:h-full'
+                              />
+                            </div>
+                            <div className='flex-1 p-4 space-y-2 flex flex-col'>
+                              <h3 className='text-sm font-medium text-gray-900'>
+                                <Link to={`/collection${params.category}`}>
+                                  <span
+                                    aria-hidden='true'
+                                    className='absolute inset-0'
+                                  />
+                                  {product.title}
+                                </Link>
+                              </h3>
+                              <p className='text-sm text-gray-500 truncate'>
+                                {product.description}
+                              </p>
+                              {/* <div className='flex-1 flex flex-col justify-end'>
+              <p className='text-base font-medium text-gray-900'>
+                ${product.price}
+              </p>
+            </div> */}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                  {location.pathname === "/collection:office" && (
+                    <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-2'>
+                      {officeData.map((product: any, index: any) =>
+                        officeData.length === index + 1 ? (
+                          <div
+                            ref={lastProductRef}
+                            id={product.id}
+                            onClick={(e: any) => handleOnClick(e, product.id)}
+                            key={uuid()}
+                            className='group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden cursor-pointer'
                           >
                             <div className='aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
                               <img
@@ -409,9 +963,6 @@ export default function Example() {
                 </section>
               </div>
             </main>
-            <button onClick={next} className='p-4 bg-red-500'>
-              LOAD
-            </button>
           </div>
         </div>
       </motion.div>

@@ -1,20 +1,26 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
-export default function Example({ classes, stroke }) {
+export default function Example({
+  classes,
+  stroke,
+}: {
+  classes: string;
+  stroke: string;
+}) {
   return (
     <motion.svg
       id='Layer_1'
       data-name='Layer 1'
       viewBox='0 0 1919.99 1080'
       stroke={stroke}
-      strokeWidth="3px"
+      strokeWidth='3px'
       fill='transparent'
       className={classes}
-      initial={{ opacity: 0, y: '5px' }}
+      initial={{ opacity: 0, y: "5px" }}
       animate={{
         opacity: 1,
-        y: '0px',
+        y: "0px",
       }}
       transition={{ duration: 2, delay: 1 }}
     >

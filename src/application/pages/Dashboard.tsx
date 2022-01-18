@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Fragment, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import {
@@ -15,16 +15,28 @@ import useDashboard from "../../hooks/useDashboard";
 // import Logo from "../../resources/logo.png";
 import InputTags from "../components/InputTags";
 
-function classNames(...classes) {
+function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({ navigation, userNavigation, types }) {
+interface IProps {
+  category: {
+    Tables?: boolean;
+    CaseGoods?: boolean;
+    Mirrors?: boolean;
+    Seating?: boolean;
+    Office?: boolean;
+    Beds?: boolean;
+    Lighting?: boolean;
+  };
+}
+
+export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [files, setFiles] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | string>(null);
   const [submit, setSubmit] = useState(false);
-  const [category, setCategory] = useState({});
+  const [category, setCategory] = useState<IProps["category"]>({});
   const [deliveryTag, setDeliveryTag] = useState([]);
   const [dimensionTag, setDimensionTag] = useState([]);
   const [materialTag, setMaterialTag] = useState([]);
@@ -43,10 +55,10 @@ export default function Example({ navigation, userNavigation, types }) {
     ],
   });
 
-  const selected = (tags, name) => {
+  const selected = (tags: string[], name: string) => {
     let updated = [...productData.details];
     console.log(updated);
-    updated.forEach((tag) => {
+    updated.forEach((tag: any) => {
       if (tag.name === name) {
         tag.item = tags;
         setProductData({ ...productData, details: updated });
@@ -64,22 +76,22 @@ export default function Example({ navigation, userNavigation, types }) {
     setProductData,
   });
 
-  const selectCategoryHandler = (e) => {
+  const selectCategoryHandler = (e: any) => {
     setCategory({ [e.target.value]: true });
   };
 
-  const handleInput = (e) => {
+  const handleInput = (e: any) => {
     setProductData({ ...productData, [e.target.name]: e.target.value });
   };
-  const handleImage = (e) => {
+  const handleImage = (e: any) => {
     for (let i = 0; i < e.target.files.length; i++) {
       const images = e.target.files[i];
-      setFiles((prevState) => [...prevState, images]);
+      setFiles((prevState): any => [...prevState, images]);
     }
   };
 
   console.log("Dashboard component rerenders", "submitValue: " + submit);
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
     if (!files) {
       return setError("You need to upload file");
@@ -326,7 +338,6 @@ export default function Example({ navigation, userNavigation, types }) {
                                 autoComplete='given-name'
                                 className='mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                 value={productData.title}
-                                autoComplete='off'
                               />
                             </div>
                           </div>
@@ -607,20 +618,13 @@ export default function Example({ navigation, userNavigation, types }) {
   );
 }
 
-Example.propTypes = {
-  navigation: PropTypes.array.isRequired,
-  userNavigation: PropTypes.array.isRequired,
-  types: PropTypes.array.isRequired,
-};
-Example.defaultProps = {
-  navigation: [
-    { name: "Collection", href: "#", icon: CollectionIcon, current: true },
-  ],
-  userNavigation: [
-    { name: "Your Profile", href: "#" },
-    { name: "Settings", href: "#" },
-    { name: "Sign out", href: "#" },
-  ],
+const navigation = [
+  { name: "Collection", href: "#", icon: CollectionIcon, current: true },
+];
+const userNavigation = [
+  { name: "Your Profile", href: "#" },
+  { name: "Settings", href: "#" },
+  { name: "Sign out", href: "#" },
+];
 
-  types: ["image/png", "image/jpeg"],
-};
+const types = ["image/png", "image/jpeg"];
