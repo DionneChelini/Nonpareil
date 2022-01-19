@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 
 const useLottieAnimation = (url) => {
-  const animation = useRef(null);
+  const animation = useRef();
 
   useEffect(() => {
     lottie.loadAnimation({
