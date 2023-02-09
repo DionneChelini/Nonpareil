@@ -13,7 +13,7 @@ const categories = [
     name: "Case Goods",
     href: "/collection:caseGoods",
     imageSrc:
-      "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1118_3.jpg?alt=media&token=8dd857ef-2dfe-4ad6-8e8f-2f38724264cd",
+      "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1235_1.jpg?alt=media&token=11eb9c5a-18c9-4afb-8198-e2b4ced05470",
     imageAlt:
       "Natural leather mouse pad on white desk next to porcelain mug and keyboard.",
     description:
@@ -23,7 +23,7 @@ const categories = [
     name: "Lighting",
     href: "/collection:lighting",
     imageSrc:
-      "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1476_2.jpg?alt=media&token=e77d348e-faca-4b22-9012-ad87074532cf",
+      "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1482_1.jpg?alt=media&token=f82907d3-83e4-4f94-931e-224acf4a0d92",
     imageAlt:
       "Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.",
     description: "Luxurious Italian lighting design.",

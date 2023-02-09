@@ -88,8 +88,8 @@ const Example = ({ footerNavigation, history }) => {
                     />
                   </div>
                   <div className='ml-3 text-base text-gray-400'>
-                    <p>+61 (03) 8373 7798</p>
-                    <p className='mt-1'>Mon-Fri 9am to 5pm PST</p>
+                    <p>WhatsApp +393278659243</p>
+                    <p className='mt-1'>Available all hours</p>
                   </div>
                 </div>
                 <div className='mt-6 flex'>
@@ -100,7 +100,7 @@ const Example = ({ footerNavigation, history }) => {
                     />
                   </div>
                   <div className='ml-3 text-base text-gray-400'>
-                    <p>enquiry@nonpareil-collection.com.au</p>
+                    <p>contact@nonpareilcollection.com</p>
                   </div>
                 </div>
               </div>

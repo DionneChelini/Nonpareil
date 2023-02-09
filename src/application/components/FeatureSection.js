@@ -20,7 +20,7 @@ export default function Example({ products }) {
 
         <div className='mt-8 relative'>
           <div className='relative w-full pb-6 -mb-6 overflow-x-auto'>
-            <ul className='mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:space-x-0 lg:grid lg:grid-cols-5 lg:gap-x-8'>
+            <ul className='mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:space-x-0 lg:grid lg:grid-cols-4 lg:gap-x-8'>
               {products.map((product) => (
                 <li
                   key={uuid()}
@@ -165,28 +165,8 @@ Example.defaultProps = {
       imageAlt:
         "Nonpareil Collection: The Ultimate Destination For Luxurious Cabinets || Luxurious Designer Cabinets",
     },
-    {
-      id: 10,
-      title: "Modular Sofa Seating With Bronze Metal Seat Rail",
 
-      price: "$AUS 43,926.30",
-      href: "/product_overview:m14tP8KMqU6MuX878A1o",
-      imageSrc:
-        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1660_4.jpg?alt=media&token=ed66054e-899f-44fc-a259-1a4b49adc662",
-      imageAlt:
-        "Nonpareil Collection: The Ultimate Destination For Luxurious Sofas|| Luxurious Designer Sofas",
-    },
-    {
-      id: 11,
-      title: "LEATHER FRAME BED",
-
-      price: "$AUS 22,035.50",
-      href: "/product_overview:1IG2fBrunKrQKi6L9OQP",
-      imageSrc:
-        "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
-      imageAlt:
-        "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Beds",
-    },
+   
     {
       id: 12,
       title: "Macassar Ebony Sideboard",

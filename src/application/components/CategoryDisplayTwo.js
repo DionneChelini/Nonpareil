@@ -45,7 +45,7 @@ Example.defaultProps = {
       name: 'Office',
       href: '/collection:office',
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1074_4.jpg?alt=media&token=b2b3fa20-22b2-4cdd-bc80-481ddb79cd14',
+        'https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1074_1.jpg?alt=media&token=e3cf462a-6047-42fd-ae91-db6b52911af2',
       imageAlt:
         'Brown leather key ring with brass metal loops and rivets on wood table.',
       description:
@@ -55,7 +55,7 @@ Example.defaultProps = {
       name: 'Seating',
       href: '/collection:seating',
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1660_4.jpg?alt=media&token=d44b109b-bc38-4011-9e7f-a7712dcfd9b6',
+        'https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1590_1.jpg?alt=media&token=810b73e9-73e3-4cc8-b33f-3245dea3b282',
       imageAlt:
         'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
       description:
@@ -65,7 +65,7 @@ Example.defaultProps = {
       name: 'Tables',
       href: '/collection:tables',
       imageSrc:
-        'https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1360_1.jpg?alt=media&token=f5dd0853-e678-459e-9a37-ecc4bcb0c20e',
+        'https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1274_1.jpg?alt=media&token=3d3fa04c-2218-4571-80e6-815f79de88a1',
       imageAlt:
         'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
       description: 'Luxury designer Italian tables.',

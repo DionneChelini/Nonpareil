@@ -446,7 +446,7 @@ export default function Example() {
                   you to review this page from time to time. If you are
                   registered with us and would like to delete your registration
                   and personal details from our database, please do so by email
-                  at enquiry@nonpareil-collection.com.au
+                  at contact@nonpareilcollection.com
                 </p>
               </div>
             </div>

@@ -350,7 +350,7 @@ Example.defaultProps = {
             name: "Beds",
             href: "/collection:beds",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1093_1.jpg?alt=media&token=c32d616d-4e02-4f0d-863e-a3608674e96a",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1084_1.jpg?alt=media&token=7d7b7c50-edd1-446b-b128-b9b7e1f6010d",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Beds || Luxurious Designer Bed",
           },
@@ -453,31 +453,16 @@ Example.defaultProps = {
             name: "Office Chairs",
             href: "/collection:office",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1074_4.jpg?alt=media&token=b2b3fa20-22b2-4cdd-bc80-481ddb79cd14",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1700_1.jpg?alt=media&token=f9204502-fcfa-4877-992a-67093b19defd",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
-          {
-            name: "Office Bookcases",
-            href: "/collection:office",
-            imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1121_1.jpg?alt=media&token=637f4755-66c0-4caa-b433-b01229d5f6eb",
-            imageAlt:
-              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
-          },
-          {
-            name: "Collector Items",
-            href: "/collection:office",
-            imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1057_2.jpg?alt=media&token=15435423-3307-42cb-8c8c-c5add304d3f4",
-            imageAlt:
-              "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
-          },
+   
           {
             name: "Office Desks",
             href: "/collection:office",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1048_1.jpg?alt=media&token=b1780aeb-94b3-4e56-863d-af3256b1cbb0",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1026_1.jpg?alt=media&token=b8d0de44-3fb6-4069-b515-39718c928be0",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Office Furniture || Exquisite Office Furniture",
           },
@@ -490,7 +475,7 @@ Example.defaultProps = {
             name: "Sofas",
             href: "/collection:seating",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1660_4.jpg?alt=media&token=d44b109b-bc38-4011-9e7f-a7712dcfd9b6",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1645_1.jpg?alt=media&token=55910ea1-00e3-4735-bb26-f3c883176fd4",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
@@ -498,7 +483,7 @@ Example.defaultProps = {
             name: "Benches & Ottomans",
             href: "/collection:seating",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1591_3.jpg?alt=media&token=ef0b42e0-248a-4b8a-9425-601731c479a6",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1590_1.jpg?alt=media&token=810b73e9-73e3-4cc8-b33f-3245dea3b282",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
@@ -506,7 +491,7 @@ Example.defaultProps = {
             name: "Armchairs",
             href: "/collection:seating",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1743_3.jpg?alt=media&token=0da68ee1-235f-4798-aa09-7da6621d6672",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1742_1.jpg?alt=media&token=5251ab84-bb9f-49be-9f66-9cbd921f7972",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
@@ -514,7 +499,7 @@ Example.defaultProps = {
             name: "Chaise Longues",
             href: "/collection:seating",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1602_2.jpg?alt=media&token=95a59ce4-01eb-4a76-942c-650977700c70",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1613_1.jpg?alt=media&token=3cb6a536-1009-4e0e-a840-a723b12c3555",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Seating || Sofas | Benches & Ottomans | Armchairs | Chaise Longues",
           },
@@ -527,7 +512,7 @@ Example.defaultProps = {
             name: "Coffee & Cocktail Tables ",
             href: "/collection:tables",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1337_2.jpg?alt=media&token=17e5812e-a639-49e7-9edb-762c862744b1",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1335_1.jpg?alt=media&token=bac047dd-ef4f-44de-9035-34ab0e72d7a0",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
@@ -535,7 +520,7 @@ Example.defaultProps = {
             name: "Console Tables",
             href: "/collection:tables",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1360_1.jpg?alt=media&token=f5dd0853-e678-459e-9a37-ecc4bcb0c20e",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1361_1.jpg?alt=media&token=0188bbd8-0712-4539-a396-2be1797a9c27",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
@@ -543,7 +528,7 @@ Example.defaultProps = {
             name: "Hall Tables",
             href: "/collection:tables",
             imageSrc:
-              "https://firebasestorage.googleapis.com/v0/b/top-quality-furniture---dev.appspot.com/o/1235_2.jpg?alt=media&token=fd11ba15-6d7d-4ae9-92b5-991db548503a",
+              "https://firebasestorage.googleapis.com/v0/b/nonpareil-collection.appspot.com/o/1042_1.jpg?alt=media&token=dcb6dd59-6b4f-4c73-9a89-099b05536e98",
             imageAlt:
               "Nonpareil Collection: The Ultimate Destination For Luxurious Tables || Cocktail Tables | Console Tables | Hall Tables | Dinning Tables",
           },
